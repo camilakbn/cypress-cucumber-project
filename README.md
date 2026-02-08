@@ -2,7 +2,7 @@ Installing and configuring Cypress Cucumber Preprocessor:
 
 You need to have Node.js and npm (Node Package Manager) installed on your computer.
 
-- Create a folder with a name you want for your project;
+- Create a folder with a name you want for your project; 
 - Open the terminal on your folder, then type "npm init -y", and follow the steps to create the package.json file;
 - Type 'npm install cypress --save-dev' to install cypress latest version;
 - Type 'npx cypress open' to test if the cypress was installed correctly, configure cypress then close the browser;
