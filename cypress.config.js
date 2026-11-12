@@ -5,7 +5,7 @@ import { createEsbuildPlugin } from "@badeball/cypress-cucumber-preprocessor/esb
 
 export default defineConfig({
   e2e: {
-    baseUrl: "http://publicazo.insprak.com/",
+       baseUrl: "https://publicazo.insprak.com/",
     specPattern: "**/*.feature",
     async setupNodeEvents(on, config) {
       // implement node event listeners here
