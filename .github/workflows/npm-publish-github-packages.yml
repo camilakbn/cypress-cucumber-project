@@ -3,29 +3,28 @@ name: Cypress E2E CI
 on: [push]
 
 jobs:
-  build:
-
+  cypress_e2e:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
-      - run: npm install
-      - run: npm run build --if-present      
 
-  cypress_e2e:
-    runs-on: ubuntu-latest
+      - name: Verificar se o site está acessível
+        run: curl -I -L --max-time 20 https://publicazo.insprak.com/
 
-    needs: [ build ]
-
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
         with:
-          node-version: 20
-          cache: 'npm'   
-      - run: npm install
-      - run: npm test
+          browser: chrome
+          # se o teu npm test faz algo especial, usa: command: npm test
+
+      - name: Guardar screenshots se falhar
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
